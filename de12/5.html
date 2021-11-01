@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <!-- ⑥↓タイトルを変えてみよう -->
+    <title>しょうすけのXBPテストページ</title>
+    <!-- ⑤スタイルシートの設定をしよう -->
+    <link rel="stylesheet" href="css/style.css"><!-- h1.htmlからある行をコピペしてくればOK -->
+</head>
+<body>
+    <h1>XBP Assignment5</h1>
+    <h2>ゲーム作成</h2>
+    <div>今回はpythonを使ってゲームを作った。<br>
+        内容としては性格診断です。
+        <code>
+            <ol start="1" style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+            <li style="background-color:#EFF;">blood=input(<font style="color:brown;">"あなたの血液型は？"</font>)</li>
+            <li style="background-color:#EEF;">seiza=input(<font style="color:brown;">"あなたの星座は？"</font>)</li>
+            <li style="background-color:#EFF;"></li>
+            <li style="background-color:#EEF;"></li>
+            <li style="background-color:#EFF;"></li>
+            <li style="background-color:#EEF;">import random</li>
+            <li style="background-color:#EFF;">items=(<font style="color:brown;">"おっとり"</font>,<font style="color:brown;">"勇敢"</font>,<font style="color:brown;">"せっかち"</font>,<font style="color:brown;">"呑気"</font>,<font style="color:brown;">"穏やか"</font>,<font style="color:brown;">"生意気"</font>,<font style="color:brown;">"慎重"</font>)</li>
+            <li style="background-color:#EEF;"></li>
+            <li style="background-color:#EFF;">print(<font style="color:brown;">"あなたの"</font>,random.choice(items),<font style="color:brown;">"な性格です。"</font>)</li>
+            <li style="background-color:#EEF;"></li>
+            </ol></code>
+    </div>
+    乱数で占い的なものを作りました。
+最初は参考のrandamの変数を使って作ろうと思ったのですが、うまく行かず、randam choiceの乱数を使うことで、作ることができました。
+難しかった所は、printの中に"randam choice"を入れることに気づくのが大変でした。
+   <h3></h3>
+   <div>
+    <br>ユーザー側をフロントエンド、サーバー側をバックエンドと呼ぶ
+    これを操るために言語を使う<br>
+    <ol><li>言語</li>
+    <li>記憶</li>
+    <li>条件分岐（判断）</li>
+    <li>繰り返し</li>
+    </ol>
+    この四つが重要である
+
+    <br>数字は文字と数字で認識される
+    Inputで入れると文字として認識される。<br>
+    <br>Pythonのデータ型一覧
+    int型：整数
+     float型：小数点
+     str型：文字列
+     bool型：真偽値
+     list型：リスト
+     tuple型：タプル
+     dict型：辞書<br>
+    
+    <br>変数は上書きされていくので、あとで値を使いたい場合はリストリスト（list）を使う<br>
+    
+   <br> l=len(リスト) #リストに入っている値の件数を求める
+    s=sum(リスト) #リストの値の合計を求める</div>
+</ul>       <!-- ④↓に外部リンクを作ってみよう -->
+<a href="index.html">デザイン演習I・II</a><br>
+<a href="../index.html">XBPトップページ</a><br>
+
+
+</body>
+</html>
