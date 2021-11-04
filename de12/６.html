@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <!-- ⑥↓タイトルを変えてみよう -->
+    <title>しょうすけのXBPテストページ</title>
+    <!-- ⑤スタイルシートの設定をしよう -->
+    <link rel="stylesheet" href="css/style.css"><!-- h1.htmlからある行をコピペしてくればOK -->
+</head>
+<body>
+    <h1>XBP Assignment６</h1>
+    <h2>pythonで課題</h2>
+    <h3>GITのadd,commit,pushの自動化</h3>
+    <div>import subprocess
+
+        a = ['path="/Users/sakaneshousuke/mygit/xbp/"',
+             'clear',
+             'cd $path',
+             'echo ""',
+             'echo $path',
+             'git add .',
+             'git commit -m "auto commit"',
+             'git push']
+        
+        subprocess.call(a, shell=True)
+        
+    
+
+    </div>
+
+   <h3>作品説明・なぜこれを作ろうと思ったのか</h3>
+   <div>シェルスクリプトというものを使ってadd,commit,pushのコマンドの一連の流れを一連化し、 pythonで動かしたものです。これがあったらとても便利だなと思ったので作りました。</div>
+<h3>シェルスクリプトについて</h3>
+シェルスクリプトとはコマンドを並べて実行してくれるものです。
+<h3>難しかったこと</h3>
+難しかったことはシェルスクリプトを作るときにVScodeを使って作るというのに気づくまでに時間がかかったし、そのシェルスクリプトをpythonで動かすのがとても大変でした。
+<h3>参考にしたサイト一覧</h3>
+<ul>
+<li><a href="https://tech.mobilefactory.jp/entry/2018/12/27/150000" target="_blank">Pythonでシェルコマンドを実行する</a></li>
+<li><a href="https://qiita.com/no-use-kuro/items/cfd3b48f8e5f08c9316f" target="_blank">PythonでリモートリポジトリにCommit&Pushする最も簡単な方法</a></li>
+<li><a href="https://qiita.com/ego/items/3d23cda713f29f0dd141" target="_blank">忘れた時の pythonでシェルスクリプト実行</a></li>
+</ul>
+<br><a href="index.html">デザイン演習I・II</a><br>
+<a href="../index.html">XBPトップページ</a>
+
+
+</body>
+</html>
