@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title>デザイン演習Ⅲ・Ⅳ</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/xbp.ico">
+</head>
+<body>
+    <logotohome>
+    <a href="../index.html"><img src="./images/0_XBlogo.png" alt=""></a>
+    </logotohome>
+    <h1>デザイン演習Ⅲ・Ⅳ assignment 第二回</h1>
+    <h2>光を操る</h2>
+    <biv>Neopixelを使う</biv>
+    <h3>配線</h3>
+    <br>>NeoPixelの+5V(赤）はArduinoの5V</br>
+    <br>NeoPixelのDin（黄）はArduinoの9番ピン(470Ω程度の抵抗を入れる)</br>
+    <br> NeoPixelのGND（黒）はArduinoのGNDにつなげる</br>
+   <h3>おこなったプログラミング</h3>
+    <code>
+        <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+        <li style="background-color:#EFF;">#include &lt;Adafruit_NeoPixel.h&gt;</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">#define PIN 9   //Arduinoで使うピン</li>
+        <li style="background-color:#EEF;">#define NUMPIXELS      5//LEDの数。</li>
+        <li style="background-color:#EFF;">int brightness=10;//明るさ</li>
+        <li style="background-color:#EEF;">int red_value=0;//赤要素</li>
+        <li style="background-color:#EFF;">int red_target=0;//赤要素の変化_目標値</li>
+        <li style="background-color:#EEF;">int green_value=0;//緑要素</li>
+        <li style="background-color:#EFF;">int green_target=0;//緑要素の変化_目標値</li>
+        <li style="background-color:#EEF;">int blue_value=0;//青要素</li>
+        <li style="background-color:#EFF;">int blue_target=0;//青要素の変化_目標値</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">boolean disp=true;</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">void setup()</li>
+        <li style="background-color:#EEF;">{</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;pixels.begin(); // NeoPixel出力ピンの初期化</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;pixels.setBrightness(brightness);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;pinMode(PIN,OUTPUT);</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;red_value=255;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;red_target=random(0,255);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;green_value=0;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;green_target=random(0,255);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;blue_value=180;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;blue_target=random(0,255);</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;for(int i=0; i &lt; NUMPIXELS; i++){</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;pixels.setPixelColor(i,pixels.Color(red_value,green_value,blue_value));</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;}</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;pixels.show(); </li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">}</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">void loop(){</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;if (disp==true){</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 赤要素の変化 -----------------------</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (red_target&gt;red_value){</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//目標値より値が小さかったら、値を増やす</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red_value++;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else if(red_target&lt;red_value){</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//目標値より値が大きかったら、値を減らす</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red_value--;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else if(red_target==red_value){</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red_value=red_target;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//目標値になったら、目標値を再設定</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red_target=random(0,255);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//緑要素の変化------------------------</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (green_target&gt;green_value){</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;green_value++;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else if(green_target&lt;green_value){</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;green_value--;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else if(green_target==green_value){</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;green_value=green_target;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;green_target=random(0,255);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//青要素------------------------</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (blue_target&gt;blue_value){</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blue_value++;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else if(blue_target&lt;blue_value){</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blue_value--;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else if(blue_target==blue_value){</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blue_value=blue_target;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blue_target=random(0,255);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int i=0; i &lt; NUMPIXELS; i++){</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pixels.setPixelColor(i,pixels.Color(red_value,green_value,blue_value));</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pixels.show();</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delay(50);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;}</li>
+        <li style="background-color:#EEF;">}</li>
+        </ol></code>
+
+<h2>グループワーク</h2>
+<biv>天気の良い時のPOV</biv>
+<br><img src="images/S__290193437povtenki.jpg" width="40%"><br>
+<br>天気の良い時に嬉しくなるなどの意見が出てきた。</br>
+<biv>服を選ぶ時のPOV</biv>
+<br><img src="images/S__290193439povfuku.jpg" width="40%"><br>
+<br>服を選ぶ時に嫌な気持ちになるようだ。</br>
+<biv>決め付けられた時のPOV</biv>
+<br><img src="images/S__290193440povkimetuke.jpg" width="40%"><br>
+<br>先輩などに一方的に意見を通されると嫌な気持ちになるようだ。<br>
+<biv>自分で考察したPOV</biv>
+<br><img src="images/S__290193441povkousatu.jpg" width="50%"><br>
+
+    
+<br>
+<br>
+
+
+</body>
+</html>
